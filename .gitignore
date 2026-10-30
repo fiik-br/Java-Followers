@@ -1,0 +1,22 @@
+# Local planning notes (not part of the published repo)
+/docs/
+
+# Build output
+target/
+
+# Local Instagram export and generated reports
+/export/
+*.csv
+*.zip
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# JVM crash logs and stray class files
+*.class
+*.log
+hs_err_pid*
+replay_pid*
