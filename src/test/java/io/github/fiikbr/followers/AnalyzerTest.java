@@ -1,6 +1,8 @@
 package io.github.fiikbr.followers;
 
 import org.junit.jupiter.api.Test;
+import java.util.HashSet;
+
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,8 +10,9 @@ class AnalyzerTest {
 
     private final Analyzer analyzer = new Analyzer();
 
+    // teste de comportamento para verificar se as listas estão corretas.
     @Test
-    void compLists(){
+    void compTheThreeLists(){
         Report report = analyzer.analyze(
                 Set.of("alice", "bob", "carol"),
                 Set.of("bob", "carol", "dave"));
@@ -17,5 +20,18 @@ class AnalyzerTest {
         assertEquals(Set.of("dave"), report.notFollowingBack());
         assertEquals(Set.of("alice"), report.youDontFollow());
         assertEquals(Set.of("bob", "carol"), report.mutuals());
+
+
+    // Teste de alteração das entradas
+    }
+    @Test
+    void doesNotMuteInputs(){
+        Set<String> followers = new HashSet<>(Set.of("alice", "bob"));
+        Set<String> following = new HashSet<>(Set.of("bob", "carol"));
+
+        analyzer.analyze(followers, following);
+
+        assertEquals(Set.of("alice", "bob"), followers);
+        assertEquals(Set.of("alice", "carol"), following);
     }
 }
