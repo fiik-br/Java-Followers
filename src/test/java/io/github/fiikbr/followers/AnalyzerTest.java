@@ -3,6 +3,8 @@ package io.github.fiikbr.followers;
 import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,5 +69,16 @@ class AnalyzerTest {
         assertTrue(report.notFollowingBack().isEmpty());
         assertEquals(Set.of("alice", "bob"), report.youDontFollow());
         assertTrue(report.mutuals().isEmpty());
+    }
+    @Test
+    void returnsListsSortedAlphabetically(){
+        Report report = analyzer.analyze(
+                Set.of("zoe", "alice"),
+                Set.of("carol", "bob"));
+
+        assertEquals(List.of("bob", "carol"),
+                new ArrayList<>(report.notFollowingBack()));
+        assertEquals(List.of("alice", "zoe"),
+                new ArrayList<>(report.youDontFollow()));
     }
 }
