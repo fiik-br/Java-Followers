@@ -22,16 +22,16 @@ class AnalyzerTest {
         assertEquals(Set.of("bob", "carol"), report.mutuals());
 
 
-    // Teste de alteração das entradas
     }
+    // Teste de alteração das entradas
     @Test
-    void doesNotMuteInputs(){
+    void doesNotMutateInputs(){
         Set<String> followers = new HashSet<>(Set.of("alice", "bob"));
         Set<String> following = new HashSet<>(Set.of("bob", "carol"));
 
         analyzer.analyze(followers, following);
 
         assertEquals(Set.of("alice", "bob"), followers);
-        assertEquals(Set.of("alice", "carol"), following);
+        assertEquals(Set.of("bob", "carol"), following);
     }
 }
