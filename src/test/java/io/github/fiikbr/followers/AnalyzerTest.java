@@ -2,6 +2,7 @@ package io.github.fiikbr.followers;
 
 import org.junit.jupiter.api.Test;
 import java.util.HashSet;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,5 +34,14 @@ class AnalyzerTest {
 
         assertEquals(Set.of("alice", "bob"), followers);
         assertEquals(Set.of("bob", "carol"), following);
+    }
+    @Test
+    void everythingIsMutualWhenSetsAreEqual(){
+        Report report = analyzer.analyze(
+                Set.of("alice", "bob"),
+                Set.of("alice", "bob"));
+        assertTrue(report.notFollowingBack().isEmpty());
+        assertTrue(report.youDontFollow().isEmpty());
+        assertEquals(Set.of("alice", "bob"), report.mutuals());
     }
 }
