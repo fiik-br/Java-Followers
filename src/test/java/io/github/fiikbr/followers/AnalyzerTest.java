@@ -44,4 +44,13 @@ class AnalyzerTest {
         assertTrue(report.youDontFollow().isEmpty());
         assertEquals(Set.of("alice", "bob"), report.mutuals());
     }
+    @Test
+    void handlesEmptySets(){
+        Report report = analyzer.analyze(Set.of(), Set.of());
+
+        assertTrue(report.notFollowingBack().isEmpty());
+        assertTrue(report.youDontFollow().isEmpty());
+        assertTrue(report.mutuals().isEmpty());
+    }
+    
 }
